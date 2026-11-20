@@ -11,14 +11,12 @@ function App() {
     body: ""
   });
 
-  let newArray;
 
   function loadPost() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        newArray = data.filter(element => element.userId === 1);
-        setPost(newArray);
+        setPost(data);
       });
   }
 
@@ -33,8 +31,37 @@ function App() {
     newObject[fieldName] = fieldValue;
 
     setPostData(newObject);
-    console.log(postData);
 
+  }
+
+  function addPost(event) {
+
+    event.preventDefault();
+
+    const config = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(postData)
+    };
+
+    fetch(url, config)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("chiamata non ok");
+        }
+        return response.json();
+
+      })
+      .then(data => {
+        console.log("Post aggiunto: ", data);
+      })
+      .catch(error => {
+        console.error("qualcosa è andato storto", error);
+      });
+
+    event.target.reset();
   }
 
   return (
@@ -53,7 +80,7 @@ function App() {
 
       </div>
       {/* section for new post */}
-      <form className="new-post-form" onChange={handleChange}>
+      <form className="new-post-form" onSubmit={addPost} onChange={handleChange}>
         <div>
           <label htmlFor="name">Nome:</label>
           <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" value={postData.name} />
