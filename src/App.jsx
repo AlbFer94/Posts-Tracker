@@ -56,12 +56,19 @@ function App() {
       })
       .then(data => {
         console.log("Post aggiunto: ", data);
+        setPost(prevPosts =>
+          [data, ...prevPosts]);
+
+        setPostData({
+          name: "",
+          title: "",
+          body: ""
+        });
       })
       .catch(error => {
         console.error("qualcosa è andato storto", error);
       });
 
-    event.target.reset();
   }
 
   return (
@@ -72,7 +79,7 @@ function App() {
         {post.map(element =>
           <PostCard
             key={element.id}
-            name={element.userId}
+            name={element.userId || element.name}
             title={element.title}
             body={element.body}
           />
