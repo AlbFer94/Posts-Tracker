@@ -1,4 +1,4 @@
-function PostForm(props) {
+function PostCard(props) {
     const name = props.name;
     const title = props.title;
     const body = props.body;
@@ -12,4 +12,4 @@ function PostForm(props) {
     )
 }
 
-export default PostForm;
+export default PostCard;

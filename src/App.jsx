@@ -1,16 +1,40 @@
 import { useState } from "react";
-import PostForm from "./components/PostForm";
+import PostCard from "./components/PostCard";
+
 function App() {
 
   const url = "https://jsonplaceholder.typicode.com/posts";
   const [post, setPost] = useState([]);
+  const [postData, setPostData] = useState({
+    name: "",
+    title: "",
+    body: ""
+  });
+
+  let newArray;
 
   function loadPost() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setPost(data);
+        newArray = data.filter(element => element.userId === 1);
+        setPost(newArray);
       });
+  }
+
+  function handleChange(event) {
+    const fieldName = event.target.name;
+    const fieldValue = event.target.value;
+
+    const newObject = {
+      ...postData,
+    }
+
+    newObject[fieldName] = fieldValue;
+
+    setPostData(newObject);
+    console.log(postData);
+
   }
 
   return (
@@ -19,7 +43,7 @@ function App() {
       <button onClick={loadPost}>Load Posts</button>
       <div className="container">
         {post.map(element =>
-          <PostForm
+          <PostCard
             key={element.id}
             name={element.userId}
             title={element.title}
@@ -28,6 +52,25 @@ function App() {
         )}
 
       </div>
+      {/* section for new post */}
+      <form className="new-post-form" onChange={handleChange}>
+        <div>
+          <label htmlFor="name">Nome:</label>
+          <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" value={postData.name} />
+        </div>
+
+        <div>
+          <label htmlFor="title">Titolo:</label>
+          <input type="text" id="title" name="title" placeholder="Inserisci il titolo del post" value={postData.title} />
+        </div>
+
+        <div>
+          <label htmlFor="body">Body:</label>
+          <textarea id="body" name="body" rows="4" placeholder="Scrivi il contenuto del post..." value={postData.body}></textarea>
+        </div>
+
+        <button type="submit">Aggiungi Post</button>
+      </form>
     </div>
   );
 }

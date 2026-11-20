@@ -56,27 +56,27 @@ button:active {
   transform: translateY(0);
 }
 
-/* --- Layout Contenitore Posts (Grid Responsive) --- */
+/* --- Layout Contenitore Posts (Righe orizzontali a tutta larghezza) --- */
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 900px;
+  width: 100%;
   margin: 0 auto;
 }
 
-/* --- Card del singolo Post --- */
+/* --- Singolo Post (sviluppato in orizzontale) --- */
 .posts-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
   background-color: #ffffff;
-  padding: 1.5rem;
+  padding: 1.5rem 1.75rem;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .posts-container:hover {
@@ -114,3 +114,66 @@ button:active {
   color: #64748b;
   line-height: 1.6;
 }
+
+/* --- Form per nuovo post --- */
+.new-post-form {
+  max-width: 650px;
+  margin: 3.5rem auto 1.5rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.new-post-form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.new-post-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.new-post-form input[type="text"],
+.new-post-form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1e293b;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.new-post-form input[type="text"]:focus,
+.new-post-form textarea:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.new-post-form input[type="text"]::placeholder,
+.new-post-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+.new-post-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.new-post-form button[type="submit"] {
+  margin: 0.5rem 0 0 0;
+  width: 100%;
+}
+
