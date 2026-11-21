@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostCard from "./components/PostCard";
 
 function App() {
@@ -10,6 +10,8 @@ function App() {
     title: "",
     body: ""
   });
+
+  useEffect(loadPost, []);
 
 
   function loadPost() {
@@ -74,7 +76,6 @@ function App() {
   return (
     <div>
       <h1>Community's Posts</h1>
-      <button onClick={loadPost}>Load Posts</button>
       <div className="container">
         {post.map(element =>
           <PostCard
