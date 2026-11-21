@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, NavLink } from "react-router";
 import HomePage from "./components/HomePage";
 import About from "./components/About";
 import PostsPage from "./components/PostsPage";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </BrowserRouter>
