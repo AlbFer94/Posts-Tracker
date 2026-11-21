@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router';
 import PostCard from "./PostCard";
 
 function PostsPage() {
@@ -67,12 +68,13 @@ function PostsPage() {
       <h1>Community's Posts</h1>
       <div className="container">
         {post.map(element =>
-          <PostCard
-            key={element.id}
-            name={element.userId || element.name}
-            title={element.title}
-            body={element.body}
-          />
+          <Link key={element.id} to={`/posts/${element.id}`}>
+            <PostCard
+              name={element.userId || element.name}
+              title={element.title}
+              body={element.body}
+            />
+          </Link>
         )}
       </div>
 
