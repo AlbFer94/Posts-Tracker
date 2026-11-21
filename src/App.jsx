@@ -88,20 +88,20 @@ function App() {
 
       </div>
       {/* section for new post */}
-      <form className="new-post-form" onSubmit={addPost} onChange={handleChange}>
+      <form className="new-post-form" onSubmit={addPost} >
         <div>
           <label htmlFor="name">Nome:</label>
-          <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" value={postData.name} />
+          <input onChange={handleChange} type="text" id="name" name="name" placeholder="Inserisci il tuo nome" value={postData.name} />
         </div>
 
         <div>
           <label htmlFor="title">Titolo:</label>
-          <input type="text" id="title" name="title" placeholder="Inserisci il titolo del post" value={postData.title} />
+          <input onChange={handleChange} type="text" id="title" name="title" placeholder="Inserisci il titolo del post" value={postData.title} />
         </div>
 
         <div>
           <label htmlFor="body">Body:</label>
-          <textarea id="body" name="body" rows="4" placeholder="Scrivi il contenuto del post..." value={postData.body}></textarea>
+          <textarea onChange={handleChange} id="body" name="body" rows="4" placeholder="Scrivi il contenuto del post..." value={postData.body}></textarea>
         </div>
 
         <button type="submit">Aggiungi Post</button>
